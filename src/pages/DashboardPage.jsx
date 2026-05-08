@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { getLeads } from "../api/leadApi";
+import LeadList from "../components/LeadList";
 
 const DashboardPage = () => {
   const [leadStats, setLeadStats] = useState({
@@ -12,9 +15,33 @@ const DashboardPage = () => {
 
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+const [params] = useSearchParams();
+  const [leads, setLeads] = useState([]);
+  
+ 
+  const fetchLeads = async () => {
+    try {
+      setLoading(true);
+
+      // Convert URL params → object
+      const query = Object.fromEntries([...params]);
+
+      const res = await getLeads(query);
+
+      setLeads(res.data.data);
+    } catch (err) {
+      console.error("Error fetching leads:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
+    fetchLeads();
+  }, [params]);
+  useEffect(() => {
     fetchLeadStats();
+   
   }, []);
 
   const fetchLeadStats = async () => {
@@ -62,20 +89,24 @@ const DashboardPage = () => {
               <h3>Quick Filters</h3>
 
               <div style={styles.buttonGroup}>
-                {["new", "contacted", "qualified", "proposalSent", "closed"].map(
-                  (status) => (
-                    <button
-                      key={status}
-                      style={styles.button}
-                      onClick={() =>
-                        navigate(`/leads/status?status=${status}`)
-                      }
-                    >
-                      {status}
-                    </button>
-                  )
-                )}
-              </div>
+  {[
+    { value: "new", label: "New" },
+    { value: "contacted", label: "Contacted" },
+    { value: "qualified", label: "Qualified" },
+    { value: "proposalSent", label: "Proposal Sent" },
+    { value: "closed", label: "Closed" },
+  ].map((status) => (
+    <button
+      key={status.value}
+      style={styles.button}
+      onClick={() =>
+        navigate(`/leads/status?status=${status.value}`)
+      }
+    >
+      {status.label}
+    </button>
+  ))}
+</div>
             </div>
           </div>
 
@@ -88,6 +119,7 @@ const DashboardPage = () => {
           </button>
         </>
       )}
+      <LeadList leads={leads}/>
     </div>
   );
 };

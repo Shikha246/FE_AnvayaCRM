@@ -65,76 +65,75 @@ const LeadList = ({ leads }) => {
         </div>
       ) : (
         <div className="row g-4">
-          {leads.map((lead) => (
-            <div
-              key={lead._id}
-              className="col-12 col-md-6 col-lg-4"
-            >
-              <div
-                className="card h-100 border-0 shadow-sm rounded-4 lead-card"
-                onClick={() => navigate(`/leads/${lead._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "0.3s ease",
-                }}
-              >
-                <div className="card-body p-4">
-                  
-                  {/* Lead Name */}
-                  <div className="d-flex justify-content-between align-items-start mb-3">
-                    <h4 className="fw-bold text-dark mb-0">
-                      {lead.name}
-                    </h4>
+  {leads.map((lead) => (
+    <div
+      key={lead._id}
+      className="col-12 col-md-6 col-lg-4"
+    >
+      <div
+        className="card h-100 border-0 shadow-sm rounded-4 lead-card"
+        onClick={() => navigate(`/leads/${lead._id}`)}
+        style={{
+          cursor: "pointer",
+          transition: "0.3s ease",
+        }}
+      >
+        <div className="card-body p-4 text-start">
 
-                    {getPriorityBadge(lead.priority)}
-                  </div>
+          {/* Lead Name */}
+          <div className="d-flex justify-content-between align-items-start mb-3">
+            <h4 className="fw-bold text-dark mb-0">
+              {lead.name}
+            </h4>
 
-                  {/* Source */}
-                  <div className="mb-2">
-                    <span className="fw-semibold text-secondary">
-                      Source:
-                    </span>{" "}
-                    {lead.source}
-                  </div>
+            {getPriorityBadge(lead.priority)}
+          </div>
 
-                  {/* Agent */}
-                  <div className="mb-2">
-                    <span className="fw-semibold text-secondary">
-                      Agent:
-                    </span>{" "}
-                    {lead.salesAgent?.name || "Not Assigned"}
-                  </div>
+          {/* Source */}
+          <div className="mb-2 text-start">
+            <span className="fw-semibold text-secondary">
+              Source:
+            </span>{" "}
+            {lead.source}
+          </div>
 
-                  {/* Status */}
-                  <div className="mb-3">
-                    <span className="fw-semibold text-secondary me-2">
-                      Status:
-                    </span>
+          {/* Agent */}
+          <div className="mb-2 text-start">
+            <span className="fw-semibold text-secondary">
+              Agent:
+            </span>{" "}
+            {lead.salesAgent?.name || "Not Assigned"}
+          </div>
 
-                    {getStatusBadge(lead.status)}
-                  </div>
+          {/* Status */}
+          <div className="mb-3 text-start">
+            <span className="fw-semibold text-secondary me-2">
+              Status:
+            </span>
 
-                  {/* Tags */}
-                  <div className="mb-3">
-                    <span className="fw-semibold text-secondary d-block mb-2">
-                      Tags:
-                    </span>
+            {getStatusBadge(lead.status)}
+          </div>
 
-                    {lead.tags.length > 0 ? (
-                      <div className="d-flex flex-wrap gap-2">
-                        {lead.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="badge rounded-pill bg-light text-dark border"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    ) : (
-                      <span className="text-muted">No Tags</span>
-                    )}
-                  </div>
+          {/* Tags */}
+          <div className="mb-3 text-start">
+            <span className="fw-semibold text-secondary me-2">
+              Tags:
+            </span>
+
+            {lead.tags.length > 0 ? (
+              lead.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="badge rounded-pill bg-light text-dark border me-2"
+                >
+                  {tag}
+                </span>
+              ))
+            ) : (
+              <span className="text-muted">No Tags</span>
+            )}
+          </div>
+
 
                   {/* Footer */}
                   <div className="border-top pt-3 mt-3 d-flex justify-content-between align-items-center">

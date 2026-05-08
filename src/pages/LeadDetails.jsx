@@ -9,6 +9,7 @@ const LeadDetails = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [lead, setLead] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -69,7 +70,11 @@ const LeadDetails = () => {
 
       setIsEditing(false);
 
-      alert("Lead updated successfully");
+      setShowToast(true);
+
+setTimeout(() => {
+  setShowToast(false);
+}, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -338,6 +343,39 @@ const LeadDetails = () => {
 
         </div>
       </div>
+      {/* Bootstrap Toast */}
+{showToast && (
+  <div
+    className="toast show position-fixed bottom-0 end-0 m-4 border-0 shadow-lg"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    style={{
+      zIndex: 9999,
+      minWidth: "300px",
+      borderRadius: "14px",
+      overflow: "hidden",
+    }}
+  >
+    <div
+      className="toast-header bg-success text-white border-0"
+    >
+      <strong className="me-auto">
+        Success
+      </strong>
+
+      <button
+        type="button"
+        className="btn-close btn-close-white"
+        onClick={() => setShowToast(false)}
+      ></button>
+    </div>
+
+    <div className="toast-body bg-white">
+      Lead updated successfully ✅
+    </div>
+  </div>
+)}
     </div>
   );
 };

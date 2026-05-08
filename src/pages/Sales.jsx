@@ -32,7 +32,6 @@ const SalesPage = () => {
 
   return (
     <div  className="text-center">
-      <h2>Leads Dashboard</h2>
 
       <LeadFilters />
 

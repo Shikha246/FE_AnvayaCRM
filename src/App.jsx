@@ -11,6 +11,8 @@ import AddAgentPage from "./pages/AddAgentPage";
 import DashboardPage from "./pages/DashboardPage";
 import { SalesAgentProvider } from "./context/SalesAgentContext";
 import ReportsPage from "./pages/ReportsPage";
+import Settings from "./pages/Settings";
+
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +33,7 @@ function App() {
           <Route path="/agents" element={<SalesAgentManagementPage /> } />
           <Route path="/agent-view/:id" element={<SalesAgentView />} />
           <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
       </SalesAgentProvider>

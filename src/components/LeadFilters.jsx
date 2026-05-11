@@ -20,15 +20,18 @@ const LeadFilters = () => {
 
   return (
     <div className="card border-0 shadow-sm rounded-4 mb-4">
-      
+
       {/* Header */}
       <div
         className="card-header border-0 text-white rounded-top-4 py-3"
         style={{
-          background: "linear-gradient(to right, #2563eb, #1e40af)",
+          background:
+            "linear-gradient(to right, #2563eb, #1e40af)",
         }}
       >
-        <h4 className="mb-0 fw-bold">Lead Filters</h4>
+        <h4 className="mb-0 fw-bold text-start">
+          Lead Filters
+        </h4>
       </div>
 
       {/* Body */}
@@ -36,64 +39,122 @@ const LeadFilters = () => {
         <div className="d-flex flex-wrap gap-3 align-items-end">
 
           {/* Status */}
-          <div style={{ minWidth: "180px" }}>
+          <div
+            className="text-start"
+            style={{ minWidth: "180px" }}
+          >
             <label className="form-label fw-semibold small">
               Status
             </label>
 
             <select
-              className="form-select rounded-3"
+              className="form-select rounded-3 text-start"
               onChange={(e) =>
-                handleFilterChange("status", e.target.value)
+                handleFilterChange(
+                  "status",
+                  e.target.value
+                )
               }
             >
-              <option value="">All Status</option>
+              <option value="">
+                All Status
+              </option>
+
               <option value="new">New</option>
-              <option value="contacted">Contacted</option>
-              <option value="qualified">Qualified</option>
-              <option value="proposalSent">Proposal Sent</option>
-              <option value="closed">Closed</option>
+
+              <option value="contacted">
+                Contacted
+              </option>
+
+              <option value="qualified">
+                Qualified
+              </option>
+
+              <option value="proposalSent">
+                Proposal Sent
+              </option>
+
+              <option value="closed">
+                Closed
+              </option>
             </select>
           </div>
 
           {/* Source */}
-          <div style={{ minWidth: "180px" }}>
+          <div
+            className="text-start"
+            style={{ minWidth: "180px" }}
+          >
             <label className="form-label fw-semibold small">
               Source
             </label>
 
             <select
-              className="form-select rounded-3"
+              className="form-select rounded-3 text-start"
               onChange={(e) =>
-                handleFilterChange("source", e.target.value)
+                handleFilterChange(
+                  "source",
+                  e.target.value
+                )
               }
             >
-              <option value="">All Sources</option>
-              <option value="Website">Website</option>
-              <option value="Referral">Referral</option>
-              <option value="Cold Call">Cold Call</option>
-              <option value="Advertisement">Advertisement</option>
-              <option value="Email">Email</option>
-              <option value="Other">Other</option>
+              <option value="">
+                All Sources
+              </option>
+
+              <option value="Website">
+                Website
+              </option>
+
+              <option value="Referral">
+                Referral
+              </option>
+
+              <option value="Cold Call">
+                Cold Call
+              </option>
+
+              <option value="Advertisement">
+                Advertisement
+              </option>
+
+              <option value="Email">
+                Email
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
             </select>
           </div>
 
           {/* Agent */}
-          <div style={{ minWidth: "200px" }}>
+          <div
+            className="text-start"
+            style={{ minWidth: "200px" }}
+          >
             <label className="form-label fw-semibold small">
               Sales Agent
             </label>
 
             <select
-              className="form-select rounded-3"
+              className="form-select rounded-3 text-start"
               onChange={(e) =>
-                handleFilterChange("salesAgent", e.target.value)
+                handleFilterChange(
+                  "salesAgent",
+                  e.target.value
+                )
               }
             >
-              <option value="">All Agents</option>
+              <option value="">
+                All Agents
+              </option>
 
               {agents.map((agent) => (
-                <option key={agent._id} value={agent._id}>
+                <option
+                  key={agent._id}
+                  value={agent._id}
+                >
                   {agent.name}
                 </option>
               ))}
@@ -101,39 +162,63 @@ const LeadFilters = () => {
           </div>
 
           {/* Tags */}
-          <div style={{ minWidth: "180px" }}>
+          <div
+            className="text-start"
+            style={{ minWidth: "180px" }}
+          >
             <label className="form-label fw-semibold small">
               Tags
             </label>
 
             <select
-              className="form-select rounded-3"
+              className="form-select rounded-3 text-start"
               onChange={(e) =>
-                handleFilterChange("tags", e.target.value)
+                handleFilterChange(
+                  "tags",
+                  e.target.value
+                )
               }
             >
-              <option value="">All Tags</option>
-              <option value="High Value">High Value</option>
-              <option value="Follow-up">Follow-up</option>
+              <option value="">
+                All Tags
+              </option>
+
+              <option value="High Value">
+                High Value
+              </option>
+
+              <option value="Follow-up">
+                Follow-up
+              </option>
             </select>
           </div>
 
           {/* Sorting */}
-          <div style={{ minWidth: "200px" }}>
+          <div
+            className="text-start"
+            style={{ minWidth: "200px" }}
+          >
             <label className="form-label fw-semibold small">
               Sort By
             </label>
 
             <select
-              className="form-select rounded-3"
+              className="form-select rounded-3 text-start"
               onChange={(e) =>
-                handleFilterChange("sort", e.target.value)
+                handleFilterChange(
+                  "sort",
+                  e.target.value
+                )
               }
             >
-              <option value="">No Sorting</option>
+              <option value="">
+                No Sorting
+              </option>
+
               <option value="priority">
                 Sort by Priority
               </option>
+
               <option value="time">
                 Sort by Time
               </option>
@@ -141,6 +226,30 @@ const LeadFilters = () => {
           </div>
         </div>
       </div>
+
+      {/* Responsive Styling */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .card-body {
+              text-align: left !important;
+            }
+
+            .form-label {
+              text-align: left !important;
+              display: block;
+            }
+
+            .form-select {
+              text-align: left !important;
+            }
+
+            .d-flex {
+              justify-content: flex-start !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

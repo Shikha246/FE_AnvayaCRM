@@ -141,7 +141,11 @@ const SalesAgentView = () => {
           "linear-gradient(to right, #eef4ff, #f8fbff)",
       }}
     >
-      <div className="container">
+      <div style={{
+    padding: "25px",
+    width: "100%",
+    boxSizing: "border-box",
+  }}>
 
         {/* Header */}
         <div className="mb-5">

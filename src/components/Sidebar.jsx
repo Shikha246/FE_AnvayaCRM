@@ -9,6 +9,7 @@ const Sidebar = ({ isOpen, setIsOpen, isDesktop }) => {
     { name: "Sales", path: "/sales" },
     { name: "Agents", path: "/agents" },
     { name: "Reports", path: "/reports" },
+    {name:"Settings",path:"settings"},
   ];
 
   return (

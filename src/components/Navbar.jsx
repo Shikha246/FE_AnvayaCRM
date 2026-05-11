@@ -1,42 +1,66 @@
 const Navbar = ({ toggleSidebar, isOpen }) => {
   return (
     <div style={styles.navbar}>
-      
-      {/* Left: Hamburger */}
-      {!isOpen && (
-        <button style={styles.menuBtn} onClick={toggleSidebar}>
-          ☰
-        </button>
-      )}
 
-      {/* Center: Title */}
+      {/* Left Section */}
+      <div style={styles.leftSection}>
+        {!isOpen && (
+          <button style={styles.menuBtn} onClick={toggleSidebar}>
+            ☰
+          </button>
+        )}
+      </div>
+
+      {/* Center Title */}
       <h2 style={styles.title}>Anvaya CRM Dashboard</h2>
+
+      {/* Right Spacer */}
+      <div style={styles.rightSection}></div>
     </div>
   );
 };
 
 const styles = {
   navbar: {
-    height: "60px",
+    height: "70px",
     background: "#fff",
-    padding: "10px 15px",
     display: "flex",
     alignItems: "center",
-    position: "relative", // 👈 important
+    justifyContent: "space-between",
     borderBottom: "1px solid #ddd",
+    padding: "0",
   },
+
+  leftSection: {
+    width: "50px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+
+  rightSection: {
+    width: "50px",
+  },
+
   menuBtn: {
-    fontSize: "20px",
+    fontSize: "24px",
     background: "none",
     border: "none",
     cursor: "pointer",
-    zIndex: 1,
-  },
-  title: {
-    position: "absolute",
-    left: "50%",
-    transform: "translateX(-50%)", // 👈 perfectly centers
+    padding: "8px 12px",
     margin: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  title: {
+    margin: 0,
+    flex: 1,
+    textAlign: "center",
+    fontSize: "clamp(18px, 4vw, 24px)",
+    fontWeight: "600",
+    lineHeight: "1",
   },
 };
 

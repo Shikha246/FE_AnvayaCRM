@@ -1,16 +1,16 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useSalesAgents } from "../context/SalesAgentContext";
 const LeadDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+const { agents } = useSalesAgents();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [lead, setLead] = useState(null);
   const [showToast, setShowToast] = useState(false);
-
+const [selectedAuthor, setSelectedAuthor] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -32,23 +32,24 @@ const LeadDetails = () => {
 
   // COMMENT FUNCTION
   const handleAddComment = async () => {
-    if (!comment.trim()) return;
+  if (!comment.trim() || !selectedAuthor) return;
 
-    try {
-      const response = await axios.post(
-        `https://be-anvaya-crm.vercel.app/api/leads/${id}/comments`,
-        {
-          text: comment,
-          author: "Admin",
-        }
-      );
+  try {
+    const response = await axios.post(
+      `https://be-anvaya-crm.vercel.app/api/leads/${id}/comments`,
+      {
+        text: comment,
+        author: selectedAuthor,
+      }
+    );
 
-      setComments(response.data.data);
-      setComment("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setComments(response.data.data);
+    setComment("");
+    setSelectedAuthor("");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   // HANDLE INPUT CHANGE
   const handleChange = (field, value) => {
@@ -131,7 +132,22 @@ setTimeout(() => {
                 <div className="col-md-6 mb-3">
                   <strong>Sales Agent:</strong>
 
-                  <p>{lead.salesAgent?.name}</p>
+                  {/* <p>{lead.salesAgent?.name}</p> */}
+                  <select
+  className="form-select mt-2"
+  value={lead.salesAgent?._id || ""}
+  onChange={(e) =>
+    handleChange("salesAgent", e.target.value)
+  }
+>
+  <option value="">Select Agent</option>
+
+  {agents.map((agent) => (
+    <option key={agent._id} value={agent._id}>
+      {agent.name}
+    </option>
+  ))}
+</select>
                 </div>
 
           
@@ -323,6 +339,19 @@ setTimeout(() => {
 
               {/* ADD COMMENT */}
               <div className="mt-4">
+                <select
+  className="form-select mb-3"
+  value={selectedAuthor}
+  onChange={(e) => setSelectedAuthor(e.target.value)}
+>
+  <option value="">Select Author</option>
+
+  {agents.map((agent) => (
+    <option key={agent._id} value={agent.name}>
+      {agent.name}
+    </option>
+  ))}
+</select>
                 <textarea
                   className="form-control mb-3"
                   rows="3"

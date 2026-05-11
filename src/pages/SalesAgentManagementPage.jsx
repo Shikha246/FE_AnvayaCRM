@@ -99,9 +99,12 @@ const SalesAgentManagementPage = () => {
 
   return (
     <div
-      className="container py-5"
+      className="py-5"
       style={{
         minHeight: "100vh",
+    padding: "25px",
+    width: "100%",
+    boxSizing: "border-box",
       }}
     >
       {/* Header */}

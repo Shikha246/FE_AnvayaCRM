@@ -38,21 +38,31 @@ const LeadList = ({ leads }) => {
   };
 
   return (
-    <div className="container py-4">
+    <div
+  style={{
+    padding: "25px",
+    width: "100%",
+    boxSizing: "border-box",
+  }}
+  className="py-4"
+>
       {/* Heading */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="fw-bold mb-1">Lead Management</h2>
+<div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+  
+  <div>
+    <h2 className="fw-bold mb-1">
+      Lead Management
+    </h2>
 
-          <p className="text-muted mb-0">
-            Track and manage all your leads
-          </p>
-        </div>
+    <p className="text-muted mb-0">
+      Track and manage all your leads
+    </p>
+  </div>
 
-        <span className="badge bg-primary fs-6 px-3 py-2">
-          Total Leads: {leads.length}
-        </span>
-      </div>
+  <span className="badge bg-primary fs-6 px-3 py-2 align-self-start align-self-md-center">
+    Total Leads: {leads.length}
+  </span>
+</div>
 
       {/* Empty State */}
       {leads.length === 0 ? (

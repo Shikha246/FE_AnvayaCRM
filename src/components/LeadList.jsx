@@ -109,36 +109,43 @@ const LeadList = ({ leads }) => {
                 <div className="card-body p-4">
 
                   {/* Top Section */}
-                  <div className="d-flex justify-content-between align-items-start mb-3">
+                  <div className="d-flex justify-content-between align-items-start gap-3 mb-3">
 
                     {/* Left Side */}
-                    <div className="text-start flex-grow-1">
+                    <div className="text-start flex-grow-1 overflow-hidden">
 
                       {/* Lead Name */}
                       <h5
                         className="fw-bold text-dark mb-3"
                         style={{
                           wordBreak: "break-word",
+                          lineHeight: "1.4",
                         }}
                       >
                         {lead.name}
                       </h5>
 
                       {/* Source */}
-                      <div className="mb-2">
+                      <div className="mb-3 info-row">
                         <span className="fw-semibold text-secondary">
                           Source:
-                        </span>{" "}
-                        {lead.source}
+                        </span>
+
+                        <span className="text-break">
+                          {lead.source}
+                        </span>
                       </div>
 
                       {/* Agent */}
-                      <div className="mb-2">
+                      <div className="mb-3 info-row">
                         <span className="fw-semibold text-secondary">
                           Agent:
-                        </span>{" "}
-                        {lead.salesAgent?.name ||
-                          "Not Assigned"}
+                        </span>
+
+                        <span className="text-break">
+                          {lead.salesAgent?.name ||
+                            "Not Assigned"}
+                        </span>
                       </div>
 
                       {/* Status */}
@@ -152,47 +159,48 @@ const LeadList = ({ leads }) => {
                       </div>
 
                       {/* Tags */}
-                      {/* Tags */}
-<div className="mb-2 d-flex align-items-center flex-wrap">
+                      <div className="mb-2 tags-wrapper">
 
-  <span className="fw-semibold text-secondary me-2">
-    Tags:
-  </span>
+                        <span className="fw-semibold text-secondary me-2">
+                          Tags:
+                        </span>
 
-  <div className="d-flex flex-wrap gap-2">
-    {lead.tags.length > 0 ? (
-      lead.tags.map((tag, index) => (
-        <span
-          key={index}
-          className="badge rounded-pill bg-light text-dark border"
-          style={{
-            whiteSpace: "nowrap",
-          }}
-        >
-          {tag}
-        </span>
-      ))
-    ) : (
-      <span className="text-muted">
-        No Tags
-      </span>
-    )}
-  </div>
-</div>
+                        <div className="d-flex flex-wrap gap-2 mt-2 mt-sm-0">
+
+                          {lead.tags.length > 0 ? (
+                            lead.tags.map((tag, index) => (
+                              <span
+                                key={index}
+                                className="badge rounded-pill bg-light text-dark border px-3 py-2"
+                                style={{
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
+                                {tag}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-muted">
+                              No Tags
+                            </span>
+                          )}
+
+                        </div>
+                      </div>
 
                     </div>
 
                     {/* Right Side Priority Badge */}
-                    <div className="ms-2 flex-shrink-0">
+                    <div className="ms-1 flex-shrink-0">
                       {getPriorityBadge(lead.priority)}
                     </div>
                   </div>
 
                   {/* Footer */}
-                  <div className="border-top pt-3 mt-3 d-flex justify-content-between align-items-center">
+                  <div className="border-top pt-3 mt-4 d-flex justify-content-between align-items-center gap-3 flex-wrap">
 
                     <div className="text-start">
-                      <small className="text-muted">
+                      <small className="text-muted d-block">
                         Time to Close
                       </small>
 
@@ -201,7 +209,7 @@ const LeadList = ({ leads }) => {
                       </div>
                     </div>
 
-                    <button className="btn btn-outline-primary btn-sm rounded-pill px-3">
+                    <button className="btn btn-outline-primary rounded-pill px-3 py-2 btn-mobile">
                       View Details
                     </button>
                   </div>
@@ -221,9 +229,28 @@ const LeadList = ({ leads }) => {
             box-shadow: 0 12px 25px rgba(0,0,0,0.12) !important;
           }
 
+          .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            line-height: 1.5;
+          }
+
+          .tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+          }
+
           @media (max-width: 576px) {
+
+            .py-4 {
+              padding-top: 1rem !important;
+              padding-bottom: 1rem !important;
+            }
+
             .card-body {
-              padding: 1.2rem !important;
+              padding: 1.1rem !important;
             }
 
             .lead-card h5 {
@@ -235,8 +262,23 @@ const LeadList = ({ leads }) => {
               font-size: 0.72rem !important;
             }
 
-            .btn-sm {
-              font-size: 0.75rem;
+            .btn-mobile {
+              width: 100%;
+              margin-top: 0.5rem;
+            }
+
+            .tags-wrapper {
+              flex-direction: column;
+              gap: 0.5rem;
+            }
+
+            .info-row {
+              flex-direction: column;
+              gap: 2px;
+            }
+
+            .border-top {
+              padding-top: 1rem !important;
             }
           }
         `}

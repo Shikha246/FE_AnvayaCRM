@@ -12,7 +12,8 @@ import DashboardPage from "./pages/DashboardPage";
 import { SalesAgentProvider } from "./context/SalesAgentContext";
 import ReportsPage from "./pages/ReportsPage";
 import Settings from "./pages/Settings";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <BrowserRouter>
@@ -34,8 +35,10 @@ function App() {
           <Route path="/agent-view/:id" element={<SalesAgentView />} />
           <Route path="/reports" element={<ReportsPage />} />
           <Route path="/settings" element={<Settings />} />
+         
         </Route>
       </Routes>
+       <ToastContainer position="top-right" autoClose={3000} />
       </SalesAgentProvider>
     </BrowserRouter>
   );

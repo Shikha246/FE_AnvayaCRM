@@ -12,6 +12,7 @@ const { agents } = useSalesAgents();
   const [showToast, setShowToast] = useState(false);
 const [selectedAuthor, setSelectedAuthor] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  
 
   useEffect(() => {
     const fetchLead = async () => {
@@ -129,26 +130,30 @@ setTimeout(() => {
                 </div>
 
                 {/* SALES AGENT */}
-                <div className="col-md-6 mb-3">
-                  <strong>Sales Agent:</strong>
+              
+<div className="col-md-6 mb-3">
+  <strong>Sales Agent:</strong>
 
-                  {/* <p>{lead.salesAgent?.name}</p> */}
-                  <select
-  className="form-select mt-2"
-  value={lead.salesAgent?._id || ""}
-  onChange={(e) =>
-    handleChange("salesAgent", e.target.value)
-  }
->
-  <option value="">Select Agent</option>
+  {isEditing ? (
+    <select
+      className="form-select mt-2"
+      value={lead.salesAgent?._id || ""}
+      onChange={(e) =>
+        handleChange("salesAgent", e.target.value)
+      }
+    >
+      <option value="">Select Agent</option>
 
-  {agents.map((agent) => (
-    <option key={agent._id} value={agent._id}>
-      {agent.name}
-    </option>
-  ))}
-</select>
-                </div>
+      {agents.map((agent) => (
+        <option key={agent._id} value={agent._id}>
+          {agent.name}
+        </option>
+      ))}
+    </select>
+  ) : (
+    <p>{lead.salesAgent?.name || "No Agent Assigned"}</p>
+  )}
+</div>
 
           
                 {/* SOURCE */}

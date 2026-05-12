@@ -53,28 +53,34 @@ const AddAgentPage = () => {
       <div className="row justify-content-center">
         <div className="col-lg-5 col-md-7 col-sm-10">
           <div className="card border-0 shadow-lg rounded-4 overflow-hidden">
-            
+
             {/* Header */}
             <div
-              className="text-center text-white py-4"
+              className="text-center text-white py-3"
               style={{
                 background: "linear-gradient(to right, #2563eb, #1e40af)",
               }}
             >
-              <h2 className="fw-bold mb-1">Add Sales Agent</h2>
+              <h3 className="fw-bold mb-1">Add Sales Agent</h3>
 
-              <p className="mb-0 opacity-75">
+              <p
+                className="mb-0 opacity-75"
+                style={{ fontSize: "0.9rem" }}
+              >
                 Create and manage your CRM team
               </p>
             </div>
 
             {/* Form */}
-            <div className="card-body p-4 p-md-5">
+            <div className="card-body p-4">
               <form onSubmit={handleSubmit}>
-                
+
                 {/* Name */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">
+                <div className="mb-3">
+                  <label
+                    className="form-label fw-semibold"
+                    style={{ fontSize: "0.95rem" }}
+                  >
                     Agent Name
                   </label>
 
@@ -84,14 +90,18 @@ const AddAgentPage = () => {
                     placeholder="Enter agent name"
                     value={form.name}
                     onChange={handleChange}
-                    className="form-control form-control-lg rounded-3"
+                    className="form-control rounded-3"
+                    style={{ fontSize: "0.95rem", padding: "10px" }}
                     required
                   />
                 </div>
 
                 {/* Email */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">
+                <div className="mb-3">
+                  <label
+                    className="form-label fw-semibold"
+                    style={{ fontSize: "0.95rem" }}
+                  >
                     Email Address
                   </label>
 
@@ -101,7 +111,8 @@ const AddAgentPage = () => {
                     placeholder="Enter email address"
                     value={form.email}
                     onChange={handleChange}
-                    className="form-control form-control-lg rounded-3"
+                    className="form-control rounded-3"
+                    style={{ fontSize: "0.95rem", padding: "10px" }}
                     required
                   />
                 </div>
@@ -113,7 +124,8 @@ const AddAgentPage = () => {
                       message.includes("successfully")
                         ? "alert-success"
                         : "alert-danger"
-                    } rounded-3`}
+                    } rounded-3 py-2`}
+                    style={{ fontSize: "0.9rem" }}
                   >
                     {message}
                   </div>
@@ -123,7 +135,8 @@ const AddAgentPage = () => {
                 <div className="d-grid mt-4">
                   <button
                     type="submit"
-                    className="btn btn-primary btn-lg rounded-3 fw-semibold py-3"
+                    className="btn btn-primary rounded-3 fw-semibold py-2"
+                    style={{ fontSize: "0.95rem" }}
                     disabled={loading}
                   >
                     {loading ? (
@@ -144,7 +157,10 @@ const AddAgentPage = () => {
           </div>
 
           {/* Footer */}
-          <p className="text-center text-muted mt-4">
+          <p
+            className="text-center text-muted mt-3"
+            style={{ fontSize: "0.85rem" }}
+          >
             Anvaya CRM • Sales Agent Management
           </p>
         </div>

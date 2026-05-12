@@ -120,6 +120,71 @@ const ReportsPage = () => {
     ],
   };
 
+  // ---------------- Chart Options ----------------
+
+  const pieOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        position: "top",
+
+        labels: {
+          font: {
+            size: window.innerWidth < 768 ? 14 : 16,
+            weight: "bold",
+          },
+          padding: 20,
+        },
+      },
+
+      tooltip: {
+        bodyFont: {
+          size: 14,
+        },
+        titleFont: {
+          size: 16,
+        },
+      },
+    },
+  };
+
+  const barOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: window.innerWidth < 768 ? 14 : 16,
+            weight: "bold",
+          },
+        },
+      },
+    },
+
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 12 : 14,
+            weight: "bold",
+          },
+        },
+      },
+
+      y: {
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 12 : 14,
+          },
+        },
+      },
+    },
+  };
+
   // ---------------- Dashboard Cards ----------------
 
   const totalLeads =
@@ -135,27 +200,45 @@ const ReportsPage = () => {
     >
       {/* Header */}
       <div className="mb-4">
-        <h1 className="fw-bold text-primary">
+        <h1
+          className="fw-bold text-primary"
+          style={{
+            fontSize:
+              window.innerWidth < 768 ? "1.7rem" : "2.5rem",
+          }}
+        >
           📊 Anvaya CRM Reports
         </h1>
 
-        <p className="text-muted">
+        <p
+          className="text-muted"
+          style={{
+            fontSize:
+              window.innerWidth < 768 ? "1rem" : "1.1rem",
+          }}
+        >
           Analytics and insights for your CRM
         </p>
       </div>
 
       {/* Summary Cards */}
       <div className="row g-4 mb-4">
-        
+
         {/* Total Leads */}
         <div className="col-md-4">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body">
-              <h6 className="text-muted">
+              <h6
+                className="text-muted"
+                style={{ fontSize: "1rem" }}
+              >
                 Total Leads
               </h6>
 
-              <h2 className="fw-bold text-dark">
+              <h2
+                className="fw-bold text-dark"
+                style={{ fontSize: "2rem" }}
+              >
                 {totalLeads}
               </h2>
             </div>
@@ -166,11 +249,17 @@ const ReportsPage = () => {
         <div className="col-md-4">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body">
-              <h6 className="text-muted">
+              <h6
+                className="text-muted"
+                style={{ fontSize: "1rem" }}
+              >
                 Closed Leads
               </h6>
 
-              <h2 className="fw-bold text-success">
+              <h2
+                className="fw-bold text-success"
+                style={{ fontSize: "2rem" }}
+              >
                 {data.closedLeads}
               </h2>
             </div>
@@ -181,11 +270,17 @@ const ReportsPage = () => {
         <div className="col-md-4">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body">
-              <h6 className="text-muted">
+              <h6
+                className="text-muted"
+                style={{ fontSize: "1rem" }}
+              >
                 Pipeline Leads
               </h6>
 
-              <h2 className="fw-bold text-warning">
+              <h2
+                className="fw-bold text-warning"
+                style={{ fontSize: "2rem" }}
+              >
                 {data.pipelineLeads}
               </h2>
             </div>
@@ -195,18 +290,31 @@ const ReportsPage = () => {
 
       {/* Top Charts */}
       <div className="row g-4">
-        
+
         {/* Closed vs Pipeline */}
         <div className="col-lg-6">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body">
-              
+
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5 className="fw-bold mb-0">
+                <h5
+                  className="fw-bold mb-0"
+                  style={{
+                    fontSize:
+                      window.innerWidth < 768
+                        ? "1rem"
+                        : "1.3rem",
+                  }}
+                >
                   Leads Closed vs Pipeline
                 </h5>
 
-                <span className="badge bg-primary">
+                <span
+                  className="badge bg-primary"
+                  style={{
+                    fontSize: "0.9rem",
+                  }}
+                >
                   Overview
                 </span>
               </div>
@@ -219,7 +327,10 @@ const ReportsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <Pie data={leadsPieData} />
+                <Pie
+                  data={leadsPieData}
+                  options={pieOptions}
+                />
               </div>
             </div>
           </div>
@@ -229,13 +340,26 @@ const ReportsPage = () => {
         <div className="col-lg-6">
           <div className="card border-0 shadow-sm rounded-4 h-100">
             <div className="card-body">
-              
+
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5 className="fw-bold mb-0">
+                <h5
+                  className="fw-bold mb-0"
+                  style={{
+                    fontSize:
+                      window.innerWidth < 768
+                        ? "1rem"
+                        : "1.3rem",
+                  }}
+                >
                   Lead Status Distribution
                 </h5>
 
-                <span className="badge bg-info">
+                <span
+                  className="badge bg-info"
+                  style={{
+                    fontSize: "0.9rem",
+                  }}
+                >
                   Status
                 </span>
               </div>
@@ -248,7 +372,10 @@ const ReportsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <Pie data={statusPieData} />
+                <Pie
+                  data={statusPieData}
+                  options={pieOptions}
+                />
               </div>
             </div>
           </div>
@@ -258,13 +385,26 @@ const ReportsPage = () => {
       {/* Bar Chart */}
       <div className="card border-0 shadow-sm rounded-4 mt-4">
         <div className="card-body">
-          
+
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h5 className="fw-bold mb-0">
+            <h5
+              className="fw-bold mb-0"
+              style={{
+                fontSize:
+                  window.innerWidth < 768
+                    ? "1rem"
+                    : "1.3rem",
+              }}
+            >
               Leads Closed by Sales Agent
             </h5>
 
-            <span className="badge bg-success">
+            <span
+              className="badge bg-success"
+              style={{
+                fontSize: "0.9rem",
+              }}
+            >
               Performance
             </span>
           </div>
@@ -276,10 +416,7 @@ const ReportsPage = () => {
           >
             <Bar
               data={agentBarData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-              }}
+              options={barOptions}
             />
           </div>
         </div>

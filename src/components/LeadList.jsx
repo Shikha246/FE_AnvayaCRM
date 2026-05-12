@@ -8,8 +8,14 @@ const LeadList = ({ leads }) => {
     switch (Number(priority)) {
       case 1:
         return <span className="badge bg-danger">High</span>;
+
       case 2:
-        return <span className="badge bg-warning text-dark">Medium</span>;
+        return (
+          <span className="badge bg-warning text-dark">
+            Medium
+          </span>
+        );
+
       default:
         return <span className="badge bg-success">Low</span>;
     }
@@ -21,13 +27,25 @@ const LeadList = ({ leads }) => {
         return <span className="badge bg-primary">New</span>;
 
       case "contacted":
-        return <span className="badge bg-info text-dark">Contacted</span>;
+        return (
+          <span className="badge bg-info text-dark">
+            Contacted
+          </span>
+        );
 
       case "qualified":
-        return <span className="badge bg-warning text-dark">Qualified</span>;
+        return (
+          <span className="badge bg-warning text-dark">
+            Qualified
+          </span>
+        );
 
       case "proposalSent":
-        return <span className="badge bg-secondary">Proposal Sent</span>;
+        return (
+          <span className="badge bg-secondary">
+            Proposal Sent
+          </span>
+        );
 
       case "closed":
         return <span className="badge bg-success">Closed</span>;
@@ -39,30 +57,30 @@ const LeadList = ({ leads }) => {
 
   return (
     <div
-  style={{
-    padding: "25px",
-    width: "100%",
-    boxSizing: "border-box",
-  }}
-  className="py-4"
->
+      style={{
+        padding: "25px",
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+      className="py-4"
+    >
       {/* Heading */}
-<div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-  
-  <div>
-    <h2 className="fw-bold mb-1">
-      Lead Management
-    </h2>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
 
-    <p className="text-muted mb-0">
-      Track and manage all your leads
-    </p>
-  </div>
+        <div>
+          <h2 className="fw-bold mb-1">
+            Lead Management
+          </h2>
 
-  <span className="badge bg-primary fs-6 px-3 py-2 align-self-start align-self-md-center">
-    Total Leads: {leads.length}
-  </span>
-</div>
+          <p className="text-muted mb-0">
+            Track and manage all your leads
+          </p>
+        </div>
+
+        <span className="badge bg-primary fs-6 px-3 py-2 align-self-start align-self-md-center">
+          Total Leads: {leads.length}
+        </span>
+      </div>
 
       {/* Empty State */}
       {leads.length === 0 ? (
@@ -75,79 +93,105 @@ const LeadList = ({ leads }) => {
         </div>
       ) : (
         <div className="row g-4">
-  {leads.map((lead) => (
-    <div
-      key={lead._id}
-      className="col-12 col-md-6 col-lg-4"
-    >
-      <div
-        className="card h-100 border-0 shadow-sm rounded-4 lead-card"
-        onClick={() => navigate(`/leads/${lead._id}`)}
-        style={{
-          cursor: "pointer",
-          transition: "0.3s ease",
-        }}
-      >
-        <div className="card-body p-4 text-start">
+          {leads.map((lead) => (
+            <div
+              key={lead._id}
+              className="col-12 col-md-6 col-lg-4"
+            >
+              <div
+                className="card h-100 border-0 shadow-sm rounded-4 lead-card"
+                onClick={() => navigate(`/leads/${lead._id}`)}
+                style={{
+                  cursor: "pointer",
+                  transition: "0.3s ease",
+                }}
+              >
+                <div className="card-body p-4">
 
-          {/* Lead Name */}
-          <div className="d-flex justify-content-between align-items-start mb-3">
-            <h4 className="fw-bold text-dark mb-0">
-              {lead.name}
-            </h4>
+                  {/* Top Section */}
+                  <div className="d-flex justify-content-between align-items-start mb-3">
 
-            {getPriorityBadge(lead.priority)}
-          </div>
+                    {/* Left Side */}
+                    <div className="text-start flex-grow-1">
 
-          {/* Source */}
-          <div className="mb-2 text-start">
-            <span className="fw-semibold text-secondary">
-              Source:
-            </span>{" "}
-            {lead.source}
-          </div>
+                      {/* Lead Name */}
+                      <h5
+                        className="fw-bold text-dark mb-3"
+                        style={{
+                          wordBreak: "break-word",
+                        }}
+                      >
+                        {lead.name}
+                      </h5>
 
-          {/* Agent */}
-          <div className="mb-2 text-start">
-            <span className="fw-semibold text-secondary">
-              Agent:
-            </span>{" "}
-            {lead.salesAgent?.name || "Not Assigned"}
-          </div>
+                      {/* Source */}
+                      <div className="mb-2">
+                        <span className="fw-semibold text-secondary">
+                          Source:
+                        </span>{" "}
+                        {lead.source}
+                      </div>
 
-          {/* Status */}
-          <div className="mb-3 text-start">
-            <span className="fw-semibold text-secondary me-2">
-              Status:
-            </span>
+                      {/* Agent */}
+                      <div className="mb-2">
+                        <span className="fw-semibold text-secondary">
+                          Agent:
+                        </span>{" "}
+                        {lead.salesAgent?.name ||
+                          "Not Assigned"}
+                      </div>
 
-            {getStatusBadge(lead.status)}
-          </div>
+                      {/* Status */}
+                      <div className="mb-3 d-flex align-items-center gap-2 flex-wrap">
 
-          {/* Tags */}
-          <div className="mb-3 text-start">
-            <span className="fw-semibold text-secondary me-2">
-              Tags:
-            </span>
+                        <span className="fw-semibold text-secondary">
+                          Status:
+                        </span>
 
-            {lead.tags.length > 0 ? (
-              lead.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="badge rounded-pill bg-light text-dark border me-2"
-                >
-                  {tag}
-                </span>
-              ))
-            ) : (
-              <span className="text-muted">No Tags</span>
-            )}
-          </div>
+                        {getStatusBadge(lead.status)}
+                      </div>
 
+                      {/* Tags */}
+                      {/* Tags */}
+<div className="mb-2 d-flex align-items-center flex-wrap">
+
+  <span className="fw-semibold text-secondary me-2">
+    Tags:
+  </span>
+
+  <div className="d-flex flex-wrap gap-2">
+    {lead.tags.length > 0 ? (
+      lead.tags.map((tag, index) => (
+        <span
+          key={index}
+          className="badge rounded-pill bg-light text-dark border"
+          style={{
+            whiteSpace: "nowrap",
+          }}
+        >
+          {tag}
+        </span>
+      ))
+    ) : (
+      <span className="text-muted">
+        No Tags
+      </span>
+    )}
+  </div>
+</div>
+
+                    </div>
+
+                    {/* Right Side Priority Badge */}
+                    <div className="ms-2 flex-shrink-0">
+                      {getPriorityBadge(lead.priority)}
+                    </div>
+                  </div>
 
                   {/* Footer */}
                   <div className="border-top pt-3 mt-3 d-flex justify-content-between align-items-center">
-                    <div>
+
+                    <div className="text-start">
                       <small className="text-muted">
                         Time to Close
                       </small>
@@ -157,10 +201,11 @@ const LeadList = ({ leads }) => {
                       </div>
                     </div>
 
-                    <button className="btn btn-outline-primary btn-sm rounded-pill">
+                    <button className="btn btn-outline-primary btn-sm rounded-pill px-3">
                       View Details
                     </button>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -168,12 +213,31 @@ const LeadList = ({ leads }) => {
         </div>
       )}
 
-      {/* Custom Hover Effect */}
+      {/* Custom Styling */}
       <style>
         {`
           .lead-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 25px rgba(0,0,0,0.12) !important;
+          }
+
+          @media (max-width: 576px) {
+            .card-body {
+              padding: 1.2rem !important;
+            }
+
+            .lead-card h5 {
+              font-size: 1rem;
+              line-height: 1.5;
+            }
+
+            .badge {
+              font-size: 0.72rem !important;
+            }
+
+            .btn-sm {
+              font-size: 0.75rem;
+            }
           }
         `}
       </style>

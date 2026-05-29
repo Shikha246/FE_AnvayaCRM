@@ -1,16 +1,72 @@
-# React + Vite
+# Customer Relationship Management (Anvaya CRM)
+ 
+ A full-stack CRM (Customer Relationship Management) application built using the MERN stack. This application helps businesses manage leads, sales agents, customer interactions, and team workflows in one place.
+---
+## Demo Link
+[Live Demo] (https://fe-anvaya-crm.vercel.app/)
+---
+## Quick Start
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```
+git clone https://github.com/Shikha246/FE_AnvayaCRM.git
+cd CRM_FE
+npm install
+npm run dev / `npm start` / `yarn dev`
+```
+---
 
-Currently, two official plugins are available:
+## Technologies
+-React JS
+-React Router
+-Context API
+-Node JS
+-Express
+-MongoDB
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Demo Video
+watch a walkthrough (6 min) of all the major features of this app:
+[Video Link] (https://drive.google.com/file/d/1rFAa8O_2LYcFtmOx1moZbP04VuSSfkzp/view?usp=sharing)
+---
+## Features
+**Lead Management**
+-Add Leads
+-Edit Leads
+-Delete Leads
+-Assign Leads to Sales Agents
+**Sales Agent Management**
+-Add Sales Agent
+-Delete Sales Agent
+-Update Sales Agent
+**Comments & Notes on Leads**
+**Dashboard Overview**
+-Lead Satus
+-Quick Filters
+**Responsive UI**
+**REST API Integration**
+---
 
-## React Compiler
+## API Reference
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Lead Routes
+Method | Endpoint |	Description
+---
+POST |	/leads	| Create a new lead
+---
+GET	| /leads |	Get all leads
+---
+GET	/ leads/stats|	Get lead statistics
+---
+GET |	/leads/:id |	Get a single lead by ID
+---
+PUT |	/leads/:id |	Update lead details
+---
+DELETE |	/leads/:id | Delete a lead
+---
+PUT |	/leads/unassign/:agentId |	Unassign all leads from a sales agent
+---
 
-## Expanding the ESLint configuration
+## Contact
+For bugs or feature request, Please reachout to <br>
+rarakhyani.shikha@gail.com
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
